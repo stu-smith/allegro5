@@ -7,7 +7,7 @@
 
 
 void _al_draw_bitmap_region_memory(ALLEGRO_BITMAP *bitmap,
-   ALLEGRO_COLOR tint,
+   ALLEGRO_COLOR tint_tl, ALLEGRO_COLOR tint_tr, ALLEGRO_COLOR tint_br, ALLEGRO_COLOR tint_bl,
    int sx, int sy, int sw, int sh, int dx, int dy, int flags);
 
 

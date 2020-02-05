@@ -22,7 +22,7 @@
 #define _AL_SRC_NOT_MODIFIED \
    (src_mode == ALLEGRO_ONE && src_alpha == ALLEGRO_ONE)
 
-#define _AL_SRC_NOT_MODIFIED_TINT_WHITE \
+#define _AL_SRC_NOT_MODIFIED_TINT_WHITE(tint) \
    (_AL_SRC_NOT_MODIFIED && \
    tint.r == 1.0f && tint.g == 1.0f && tint.b == 1.0f && tint.a == 1.0f)
 

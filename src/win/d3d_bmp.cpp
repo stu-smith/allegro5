@@ -138,7 +138,8 @@ static INLINE void transform_vertex(float* x, float* y, float* z)
  * Draw a textured quad
  */
 static void d3d_draw_textured_quad(
-   ALLEGRO_DISPLAY_D3D *disp, ALLEGRO_BITMAP *bmp, ALLEGRO_COLOR tint,
+   ALLEGRO_DISPLAY_D3D *disp, ALLEGRO_BITMAP *bmp,
+   ALLEGRO_COLOR tint_tl, ALLEGRO_COLOR tint_tr, ALLEGRO_COLOR tint_br, ALLEGRO_COLOR tint_bl,
    float sx, float sy, float sw, float sh, int flags)
 {
    float right;
@@ -187,28 +188,28 @@ static void d3d_draw_textured_quad(
    vertices[0].x = 0; \
    vertices[0].y = 0; \
    vertices[0].z = z; \
-   vertices[0].color = f(tint); \
+   vertices[0].color = f(tint_tl); \
    vertices[0].u = tu_start; \
    vertices[0].v = tv_start; \
  \
    vertices[1].x = right; \
    vertices[1].y = 0; \
    vertices[1].z = z; \
-   vertices[1].color = f(tint); \
+   vertices[1].color = f(tint_tr); \
    vertices[1].u = tu_end; \
    vertices[1].v = tv_start; \
  \
    vertices[2].x = right; \
    vertices[2].y = bottom; \
    vertices[2].z = z; \
-   vertices[2].color = f(tint); \
+   vertices[2].color = f(tint_br); \
    vertices[2].u = tu_end; \
    vertices[2].v = tv_end; \
  \
    vertices[5].x = 0; \
    vertices[5].y = bottom; \
    vertices[5].z = z; \
-   vertices[5].color = f(tint); \
+   vertices[5].color = f(tint_bl); \
    vertices[5].u = tu_start; \
    vertices[5].v = tv_end; \
 \
@@ -727,7 +728,7 @@ static bool d3d_upload_bitmap(ALLEGRO_BITMAP *bitmap)
 
 static void d3d_draw_bitmap_region(
    ALLEGRO_BITMAP *src,
-   ALLEGRO_COLOR tint,
+   ALLEGRO_COLOR tint_tl, ALLEGRO_COLOR tint_tr, ALLEGRO_COLOR tint_br, ALLEGRO_COLOR tint_bl,
    float sx, float sy, float sw, float sh, int flags)
 {
    ALLEGRO_BITMAP *dest = al_get_target_bitmap();
@@ -737,7 +738,7 @@ static void d3d_draw_bitmap_region(
    ASSERT(src->parent == NULL);
 
    if (!_al_d3d_render_to_texture_supported()) {
-      _al_draw_bitmap_region_memory(src, tint,
+      _al_draw_bitmap_region_memory(src, tint_tl, tint_tr, tint_br, tint_bl,
          (int)sx, (int)sy, (int)sw, (int)sh, 0, 0,
          (int)flags);
       return;
@@ -802,7 +803,7 @@ static void d3d_draw_bitmap_region(
          al_get_bitmap_flags(src)
       );
       if (tmp_bmp) {
-         d3d_draw_bitmap_region(tmp_bmp, tint,
+         d3d_draw_bitmap_region(tmp_bmp, tint_tl, tint_tr, tint_br, tint_bl,
             sx, sy, sw, sh, flags);
          al_destroy_bitmap(tmp_bmp);
          if (desc.MultiSampleType != D3DMULTISAMPLE_NONE) {
@@ -815,7 +816,7 @@ static void d3d_draw_bitmap_region(
    _al_d3d_set_blender(d3d_dest->display);
 
    d3d_draw_textured_quad(
-      d3d_dest->display, src, tint,
+      d3d_dest->display, src, tint_tl, tint_tr, tint_br, tint_bl,
       sx, sy, sw, sh, flags);
 }
 
