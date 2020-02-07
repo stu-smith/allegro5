@@ -202,7 +202,7 @@ static INLINE void transform_vertex(float* x, float* y, float* z)
 }
 
 static void draw_quad(ALLEGRO_BITMAP *bitmap,
-    ALLEGRO_COLOR_CORNERS *tint,
+    const ALLEGRO_COLOR_CORNERS *tint,
     float sx, float sy, float sw, float sh,
     int flags)
 {
@@ -293,7 +293,7 @@ static void draw_quad(ALLEGRO_BITMAP *bitmap,
 
 
 static void ogl_draw_bitmap_region(ALLEGRO_BITMAP *bitmap,
-   ALLEGRO_COLOR_CORNERS *tint,
+   const ALLEGRO_COLOR_CORNERS *tint,
    float sx, float sy,
    float sw, float sh, int flags)
 {

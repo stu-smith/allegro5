@@ -139,7 +139,7 @@ static INLINE void transform_vertex(float* x, float* y, float* z)
  */
 static void d3d_draw_textured_quad(
    ALLEGRO_DISPLAY_D3D *disp, ALLEGRO_BITMAP *bmp,
-   ALLEGRO_COLOR_CORNERS *tint,
+   const ALLEGRO_COLOR_CORNERS *tint,
    float sx, float sy, float sw, float sh, int flags)
 {
    float right;
@@ -728,7 +728,7 @@ static bool d3d_upload_bitmap(ALLEGRO_BITMAP *bitmap)
 
 static void d3d_draw_bitmap_region(
    ALLEGRO_BITMAP *src,
-   ALLEGRO_COLOR_CORNERS *tint,
+   const ALLEGRO_COLOR_CORNERS *tint,
    float sx, float sy, float sw, float sh, int flags)
 {
    ALLEGRO_BITMAP *dest = al_get_target_bitmap();

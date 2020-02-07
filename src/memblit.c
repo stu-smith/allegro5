@@ -28,7 +28,7 @@
 
 static void _al_draw_transformed_scaled_bitmap_memory(
    ALLEGRO_BITMAP *src,
-   ALLEGRO_COLOR_CORNERS *tint,
+   const ALLEGRO_COLOR_CORNERS *tint,
    int sx, int sy, int sw, int sh, int dx, int dy, int dw, int dh,
    int flags);
 static void _al_draw_bitmap_region_memory_fast(ALLEGRO_BITMAP *bitmap,
@@ -132,7 +132,7 @@ static void _al_draw_bitmap_region_memory_fast(ALLEGRO_BITMAP *bitmap,
 
 
 void _al_draw_bitmap_region_memory(ALLEGRO_BITMAP *src,
-   ALLEGRO_COLOR_CORNERS *tint,
+   const ALLEGRO_COLOR_CORNERS *tint,
    int sx, int sy, int sw, int sh,
    int dx, int dy, int flags)
 {
@@ -167,7 +167,7 @@ void _al_draw_bitmap_region_memory(ALLEGRO_BITMAP *src,
 
 
 static void _al_draw_transformed_bitmap_memory(ALLEGRO_BITMAP *src,
-   ALLEGRO_COLOR_CORNERS *tint,
+   const ALLEGRO_COLOR_CORNERS *tint,
    int sx, int sy, int sw, int sh, int dw, int dh,
    ALLEGRO_TRANSFORM* local_trans, int flags)
 {
@@ -251,7 +251,7 @@ static void _al_draw_transformed_bitmap_memory(ALLEGRO_BITMAP *src,
 
 
 static void _al_draw_transformed_scaled_bitmap_memory(
-   ALLEGRO_BITMAP *src, ALLEGRO_COLOR_CORNERS *tint,
+   ALLEGRO_BITMAP *src, const ALLEGRO_COLOR_CORNERS *tint,
    int sx, int sy, int sw, int sh, int dx, int dy, int dw, int dh, int flags)
 {
    ALLEGRO_TRANSFORM local_trans;

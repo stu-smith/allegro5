@@ -25,7 +25,7 @@ static ALLEGRO_COLOR solid_white = {1, 1, 1, 1};
 
 
 static void _bitmap_drawer(ALLEGRO_BITMAP *bitmap,
-   ALLEGRO_COLOR_CORNERS *tint,
+   const ALLEGRO_COLOR_CORNERS *tint,
    float sx, float sy, float sw, float sh, int flags)
 {
    ALLEGRO_BITMAP *dest = al_get_target_bitmap();
@@ -61,7 +61,7 @@ static void _bitmap_drawer(ALLEGRO_BITMAP *bitmap,
 
 
 static void _draw_tinted_rotated_scaled_bitmap_region(ALLEGRO_BITMAP *bitmap,
-   ALLEGRO_COLOR_CORNERS *tint,
+   const ALLEGRO_COLOR_CORNERS *tint,
    float cx, float cy, float angle,
    float xscale, float yscale,
    float sx, float sy, float sw, float sh, float dx, float dy,
@@ -186,7 +186,7 @@ void al_draw_tinted_scaled_bitmap(ALLEGRO_BITMAP *bitmap,
 /* Function: al_draw_corner_tinted_scaled_bitmap
  */
 void al_draw_corner_tinted_scaled_bitmap(ALLEGRO_BITMAP* bitmap,
-   ALLEGRO_COLOR_CORNERS *tint,
+   const ALLEGRO_COLOR_CORNERS *tint,
    float sx, float sy, float sw, float sh,
    float dx, float dy, float dw, float dh, int flags)
 {
