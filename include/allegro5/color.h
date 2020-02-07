@@ -17,6 +17,16 @@ struct ALLEGRO_COLOR
    float r, g, b, a;
 };
 
+/* Type: ALLEGRO_COLOR_CORNERS
+ */
+
+typedef struct ALLEGRO_COLOR_CORNERS ALLEGRO_COLOR_CORNERS;
+
+struct ALLEGRO_COLOR_CORNERS
+{
+   ALLEGRO_COLOR tl, tr, br, bl;
+};
+
 
 /* Enum: ALLEGRO_PIXEL_FORMAT
  */

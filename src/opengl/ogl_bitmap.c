@@ -202,7 +202,7 @@ static INLINE void transform_vertex(float* x, float* y, float* z)
 }
 
 static void draw_quad(ALLEGRO_BITMAP *bitmap,
-    ALLEGRO_COLOR tint_tl, ALLEGRO_COLOR tint_tr, ALLEGRO_COLOR tint_br, ALLEGRO_COLOR tint_bl,
+    ALLEGRO_COLOR_CORNERS *tint,
     float sx, float sy, float sw, float sh,
     int flags)
 {
@@ -241,40 +241,40 @@ static void draw_quad(ALLEGRO_BITMAP *bitmap,
    verts[0].z = 0;
    verts[0].tx = tex_l;
    verts[0].ty = tex_b;
-   verts[0].r = tint_bl.r;
-   verts[0].g = tint_bl.g;
-   verts[0].b = tint_bl.b;
-   verts[0].a = tint_bl.a;
+   verts[0].r = tint->bl.r;
+   verts[0].g = tint->bl.g;
+   verts[0].b = tint->bl.b;
+   verts[0].a = tint->bl.a;
    
    verts[1].x = 0;
    verts[1].y = 0;
    verts[1].z = 0;
    verts[1].tx = tex_l;
    verts[1].ty = tex_t;
-   verts[1].r = tint_tl.r;
-   verts[1].g = tint_tl.g;
-   verts[1].b = tint_tl.b;
-   verts[1].a = tint_tl.a;
+   verts[1].r = tint->tl.r;
+   verts[1].g = tint->tl.g;
+   verts[1].b = tint->tl.b;
+   verts[1].a = tint->tl.a;
    
    verts[2].x = dw;
    verts[2].y = dh;
    verts[2].z = 0;
    verts[2].tx = tex_r;
    verts[2].ty = tex_b;
-   verts[2].r = tint_br.r;
-   verts[2].g = tint_br.g;
-   verts[2].b = tint_br.b;
-   verts[2].a = tint_br.a;
+   verts[2].r = tint->br.r;
+   verts[2].g = tint->br.g;
+   verts[2].b = tint->br.b;
+   verts[2].a = tint->br.a;
    
    verts[4].x = dw;
    verts[4].y = 0;
    verts[4].z = 0;
    verts[4].tx = tex_r;
    verts[4].ty = tex_t;
-   verts[4].r = tint_tr.r;
-   verts[4].g = tint_tr.g;
-   verts[4].b = tint_tr.b;
-   verts[4].a = tint_tr.a;
+   verts[4].r = tint->tr.r;
+   verts[4].g = tint->tr.g;
+   verts[4].b = tint->tr.b;
+   verts[4].a = tint->tr.a;
    
    if (disp->cache_enabled) {
       /* If drawing is batched, we apply transformations manually. */
@@ -293,7 +293,7 @@ static void draw_quad(ALLEGRO_BITMAP *bitmap,
 
 
 static void ogl_draw_bitmap_region(ALLEGRO_BITMAP *bitmap,
-   ALLEGRO_COLOR tint_tl, ALLEGRO_COLOR tint_tr, ALLEGRO_COLOR tint_br, ALLEGRO_COLOR tint_bl,
+   ALLEGRO_COLOR_CORNERS *tint,
    float sx, float sy,
    float sw, float sh, int flags)
 {
@@ -372,12 +372,12 @@ static void ogl_draw_bitmap_region(ALLEGRO_BITMAP *bitmap,
       }
    }
    if (disp->ogl_extras->opengl_target == target) {
-      draw_quad(bitmap, tint_tl, tint_tr, tint_br, tint_bl, sx, sy, sw, sh, flags);
+      draw_quad(bitmap, tint, sx, sy, sw, sh, flags);
       return;
    }
 
    /* If all else fails, fall back to software implementation. */
-   _al_draw_bitmap_region_memory(bitmap, tint_tl, tint_tr, tint_br, tint_bl, sx, sy, sw, sh, 0, 0, flags);
+   _al_draw_bitmap_region_memory(bitmap, tint, sx, sy, sw, sh, 0, 0, flags);
 }
 
 
